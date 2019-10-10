@@ -3068,6 +3068,11 @@ static u8 save_if_interesting(char** argv, void* mem, u32 len, u8 fault) {
 #endif /* ^!SIMPLE_FILES */
 
       unique_crashes++;
+      char uni[10000] = {0};
+      snprintf(uni, sizeof(uni),"%lld\n",unique_crashes);
+      FILE* fuaaak = fopen("unique_crashes.txt", "w+");
+      fwrite(&uni, sizeof(uni),1, fuaaak);
+      fclose(fuaaak);
 
       last_crash_time = get_cur_time();
 
